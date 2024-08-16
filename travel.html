@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Travel Vlog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #5d1515;
+            line-height: 1.6;
+            background-color: #e78dbc;
+        }
+
+        .navbar {
+            background-color: #3e8e72;
+        }
+
+        .navbar-brand, .nav-link {
+            color: #442626 !important;
+        }
+
+        .jumbotron {
+            background: url('hero-image.jpg') no-repeat center center;
+            background-size: cover;
+            color: 	#0d5138;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .jumbotron h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(3, 24, 95, 0.5);
+        }
+
+        .jumbotron p {
+            font-size: 1.2rem;
+        }
+
+        .btn-primary {
+            background-color: #452121;
+            border-color: #9d6a6a;
+        }
+
+        .btn-secondary {
+            background-color: #452121;
+            border-color: #9d6a6a;
+        }
+
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #c6928c;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(170, 149, 233, 0.276);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .media img {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        footer {
+            background-color: #014340;
+            color: rgb(8, 73, 100);
+            padding: 10px 0;
+        }
+
+        #travelMap {
+            height: 500px;
+            width: 100%;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        section h2 {
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .jumbotron h1 {
+                font-size: 2rem;
+            }
+
+            .jumbotron p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">MY TRAVEL VLOG (Deepshikha RA2211028010134)</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#itineraries">Itineraries</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#travel-tips">Travel Tips</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#map">Interactive Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#stories">User Stories</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">EXPLORE THE WORLD WITH US</h1>
+            <p class="lead text-muted">Discover amazing destinations, detailed itineraries, and essential travel tips.</p>
+            <p>
+                <a href="#itineraries" class="btn btn-primary my-2">View Itineraries</a>
+                <a href="#travel-tips" class="btn btn-secondary my-2">Get Travel Tips</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Itineraries Section -->
+    <section id="itineraries" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center">Map Your Next Adventure</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="dharamshala.jpg" class="card-img-top" alt="DHARAMSHALA">
+                        <div class="card-body">
+                            <h5 class="card-title">DHARAMSHALA</h5>
+                            <p class="card-text">Head to the mountains for fresh air, stunning views, and peaceful hikes. Perfect for adventure and relaxation, the mountains offer a getaway like no other</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="chennai.jpg" class="card-img-top" alt="Itinerary 2">
+                        <div class="card-body">
+                            <h5 class="card-title">CHENNAI</h5>
+                            <p class="card-text">Escape to the beach for soft sands, warm sun, and gentle waves. Enjoy swimming, sunbathing, and stunning ocean views. It’s the perfect spot for fun and relaxation.</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="chandigarh.jpg" class="card-img-top" alt="Itinerary 3">
+                        <div class="card-body">
+                            <h5 class="card-title">ROCK GARDEN</h5>
+                            <p class="card-text">Discover the unique Rock Garden in Chandigarh, a stunning blend of art and nature. Wander through creative sculptures made from recycled materials and enjoy the serene pathways. It’s a must-visit spot for art lovers and nature enthusiasts alike.</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Tips Section -->
+    <section id="travel-tips" class="py-5">
+        <div class="container">
+            <h2 class="text-center">Travel Tips</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="media mb-4">
+                        <img src="d1.jpg" class="mr-3" alt="Tip 1">
+                        <div class="media-body">
+                           <h5 class="mt-0">Travel Tips For Dharamshala</h5>
+                            <p>-Best Time to Visit: March-June and September-November for pleasant weather.</p>
+                               <p>-Pack Appropriately: Layered clothing for varying temperatures; comfortable shoes for trekking.</p> 
+                               <p>- Stay Hydrated: Drink plenty of water to avoid altitude sickness; be cautious with street food.</p> 
+                                <p>-Respect Local Culture: Dress modestly, especially at monasteries, and respect Tibetan traditions.</p>
+                                <p>-Plan Your Itinerary: Visit the Dalai Lama Temple, Bhagsunag Waterfall, McLeod Ganj, Triund Trek, and Norbulingka Institute.</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="media mb-4">
+                        <img src="hh.jpg" class="mr-3" alt="Tip 2">
+                        <div class="media-body">
+                            <h5 class="mt-0">Travel Tips For Chennai</h5>
+                            <p>Best Time to Visit: November-February for pleasant weather and cooler temperatures</p>
+                            <p>Sun Protection: Bring sunscreen, hats, and sunglasses to protect yourself from the strong sun.</p>
+                            <p>Stay Hydrated: Carry water to stay hydrated, especially if spending a lot of time outdoors.</p>
+                            <p>Dress Comfortably: Light, breathable clothing and flip-flops are ideal for beach visits.
+                            </p>
+                            <p>Explore Nearby Attractions: Visit Marina Beach, Elliot’s Beach, Covelong Beach, and nearby temples and eateries</p>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Interactive Map Section -->
+<section id="map" class="py-3 bg-light">
+    <div class="container" style="background-image:'chennai.JPG'; background-size: cover; background-position: center; padding: 20px;">
+        <h2 class="text-center mb-4">PHOTO GALLERY</h2>
+        <div id="travelMap" style="height: 200px;"></div> <!-- Adjusted height for the map -->
+
+        <!-- Images Gallery -->
+        <div class="row mt-4">
+            <div class="col-md-3 col-6 mb-3">
+                <img src="chennai.jpg" alt="Image 1" class="img-fluid" style="height: 300px; object-fit: cover;">
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <img src="ch.jpg" alt="Image 2" class="img-fluid" style="height: 300px; object-fit: cover;">
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <img src="ch1.jpg" alt="Image 3" class="img-fluid" style="height: 300px; object-fit: cover;">
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <img src="d1.jpg" alt="Image 4" class="img-fluid" style="height: 300px; object-fit: cover;">
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <img src="hh.jpg" alt="Image 5" class="img-fluid" style="height: 300px; object-fit: cover;">
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <img src="ccc.jpg" alt="Image 6" class="img-fluid" style="height: 300px; object-fit: cover;">
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <img src="chandigarh.jpg" alt="Image 7" class="img-fluid" style="height: 300px; object-fit: cover;">
+            </div>
+            <div class="col-md-3 col-6 mb-3">
+                <img src="dharamshala.jpg" alt="Image 8" class="img-fluid" style="height: 300px; object-fit: cover;">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    
+
+    <!-- User Stories Section -->
+    <section id="stories" class="py-5">
+        <div class="container">
+            <h2 class="text-center">User Travel Stories</h2>
+            <p class="text-center">Share your travel experiences and read stories from other travelers.</p>
+            <div class="text-center">
+                <a href="#" class="btn btn-secondary">Share Your Story</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+        
+        </div>
+    </footer>
+</body>
+</html>
